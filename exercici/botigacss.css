@@ -1,0 +1,88 @@
+
+body {
+    background-color: #6cbfc5;
+}
+/* com referenciar a un identificador */
+#tit {
+
+    background-color: rgb(231, 149, 149);
+    color: rgb(0, 0, 0);
+    /*border: 2px solid rgb(37, 169, 240);*/
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* es pot referenciar només amb el punt perquè sigui global a tot el
+    dom */
+article.casalloguer {
+    color: rgb(32, 11, 11);
+    border: 2px solid black;
+    margin: 10px;
+    padding: 15px;
+    display: inline-block;
+    width: 25%;
+    height: 200px;
+    opacity: 1;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgb(109, 58, 58);
+    background: linear-gradient(to bottom, #fdfeff 25%,#ffffff 25%,#ffffff 56%,#ffffff 99%);    
+
+}
+h1{
+    margin-left: 10%;
+    color: #000000;
+    font-size: 140%;
+    text-align: center;
+}
+
+img{
+    
+    color: rgb(32, 11, 11);
+    border: 2px solid (0, 0, 0);
+    padding: 90px;
+    margin-left: 10%;
+    padding: 5px;
+    width: 75%;
+    display: block;
+    height: 200px;
+    float: inherit;*/
+}
+
+#menu-principal {
+    position: fixed;
+    margin: 10px auto;
+    display: inline-block;
+    padding: 10px;
+    width: 20%;
+    margin-left: 35%;
+    background: linear-gradient(to bottom, #907fe0 25%,#907fe0 25%,#c95656 56%,#c95656 99%);    
+    border-radius: 30px;
+    
+}
+a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 1000;
+    font-size: 100%;
+}   
+
+
+/* possem els menús en horitzontal, i sí, podem possar a la vegada més
+    d'una referència */
+li {
+    padding: 0, 0;
+    margin: 2px, 2px;
+    /* atenció la característica display que és molt potent */
+    display: inline-block;
+    margin-left: 10%;
+}
+
+
+img.logo{
+    width: 20%;
+}
