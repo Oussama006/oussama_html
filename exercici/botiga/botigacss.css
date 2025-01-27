@@ -34,9 +34,7 @@ header h2 {
     border: 2px solid rgb(37, 169, 240);
     margin: 10px auto;
     padding: 10px;
-    display: flex;
     justify-content: center;
-    gap: 15px;
     border-radius: 10px;
 }
 
@@ -68,7 +66,6 @@ section {
     display: inline-block;
     width: 30%;
     height: auto;
-    opacity: 0.9;
     border-radius: 20px;
     box-shadow: 3px 3px 10px rgb(109, 58, 58);
     text-align: center;
