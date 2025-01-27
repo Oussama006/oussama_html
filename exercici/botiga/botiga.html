@@ -21,57 +21,75 @@
     </header>
     <section id="2">
         <!-- afegim uns links per a anar a ampliar informació-->
-        <article class="casalloguer">
+        <article class="botiga">
             <img src="morroco.jpg" class="Camisetas">
             <h1>Marruecos</h1>
-            <a href="#">Ampliar informació</a>
+            <h4>29.99€</h4>
+            <h6>Camiseta de Marruecos</h6>
         </article>
-        <article class="casalloguer">
+        <article class="botiga">
             <img src="algerian.jpg" class="Camisetas">
             <h1>Algeria</h1>
-            <a href="#">Ampliar informació</a>
+            <h4>29.99€</h4>
+            <h6>Camiseta de Algeria</h6>
         </article>
-        <article class="casalloguer">
+        <article class="botiga">
             <img src="rif.jpg" class="Camisetas">
             <h1>Amazigh</h1>
-            <a href="#">Ampliar informació</a>
+            <h4>29.99€</h4>
+            <h6>Camiseta de Rif</h6>
         </article>
-        <article class="casalloguer">
+        <article class="botiga">
             <img src="españa.jpg" class="Camisetas">
             <h1>España</h1>
-            <a href="#">Ampliar informació</a>
+            <h4>29.99€</h4>
+            <h6>Camiseta de España</h6>
         </article>
-        <article class="casalloguer">
+        <article class="botiga">
             <img src="alemania.jpg" class="Camisetas">
             <h1>Alemania</h1>
-            <a href="#">Ampliar informació</a>
+            <h4>29.99€</h4>
+            <h6>Camiseta de Alemania</h6>
         </article>
-        <article class="casalloguer">
+        <article class="botiga">
             <img src="japonn.jpg" class="Camisetas">
             <h1>Japon</h1>
-            <a href="#">Ampliar informació</a>
+            <h4>29.99€</h4>
+            <h6>Camiseta de Japon</h6>
         </article>
     </section>
 
     <form id="3" method="post" action="https://result.php">
         <br>
-        <input type="text" />
+            <label for="nom">Nom:</label>
+            <input type="text" >
         <br>
-        <input type="checkbox"/>
-        <input type="button" value="pulsar"/>
         <br>
-        <select>
-        <option>opcio 1</option>
-        <option>opcio 2</option>
-        </select>
-        <textarea>àrea de text</textarea>
-        <input class="boton_enviar" type="button" value = "enviar">
-    
-    
-        </form>
+            <label for="cognom">Cognom:</label>
+            <input type="text" >
+        <br>
+        <br>
+            <label for="assumte">Assumte:</label>
+            <input type="text" >
+        <br>
+        <br>
+            <label for="pais">Pais:</label>
+            <select id="pais" name="pais" >
+                <option>España</option>
+                <option>Alemania</option>
+                <option>Marruecos</option>
+                <option>Algeria</option>
+                <option>Japon</option>
+            </select>
+        <br>
+        <br>
+            <label for="missatge">Missatge:</label>
+            <textarea id="missatge" name="missatge"></textarea>
+        <br>
+        <button class="boton_enviar" type="submit">Submit</button>
+    </form>
     <footer>
-        &copy;2022 EL meu lloguer
-        33
+        &copy;2022 CamisetasMundi
     </footer>
 </body>
 
