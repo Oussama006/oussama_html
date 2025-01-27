@@ -1,88 +1,149 @@
-
 body {
-    background-color: #6cbfc5;
+    background-color: lightblue;
+    text-align: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
-/* com referenciar a un identificador */
+
 #tit {
-
-    background-color: rgb(231, 149, 149);
-    color: rgb(0, 0, 0);
-    /*border: 2px solid rgb(37, 169, 240);*/
-    margin: 20px;
-    padding: 20px;
-    border-radius: 20px;
+    color: rgb(216, 18, 18);
+    font-size: 30px;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    margin: 20px 0;
 }
 
-
-/* es pot referenciar només amb el punt perquè sigui global a tot el
-    dom */
-article.casalloguer {
-    color: rgb(32, 11, 11);
-    border: 2px solid black;
-    margin: 10px;
-    padding: 15px;
-    display: inline-block;
-    width: 25%;
-    height: 200px;
-    opacity: 1;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px rgb(109, 58, 58);
-    background: linear-gradient(to bottom, #fdfeff 25%,#ffffff 25%,#ffffff 56%,#ffffff 99%);    
-
-}
-h1{
-    margin-left: 10%;
+header h2 {
+    text-align: center;
+    font-size: 20px;
     color: #000000;
-    font-size: 140%;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
-img{
-    
-    color: rgb(32, 11, 11);
-    border: 2px solid (0, 0, 0);
-    padding: 90px;
-    margin-left: 10%;
-    padding: 5px;
-    width: 75%;
+.logo {
     display: block;
-    height: 200px;
-    float: inherit;*/
+    margin: 0 auto;
+    width: 150px;
+    height: auto;
 }
 
 #menu-principal {
     position: fixed;
+    right: 40%;    
+    background-color: rgb(194, 192, 255);
+    color: blue;
+    border: 2px solid rgb(37, 169, 240);
     margin: 10px auto;
-    display: inline-block;
     padding: 10px;
-    width: 20%;
-    margin-left: 35%;
-    background: linear-gradient(to bottom, #907fe0 25%,#907fe0 25%,#c95656 56%,#c95656 99%);    
-    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 10px;
+}
+
+#menu-principal li {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+#menu-principal a {
+    color: blue;
+    text-decoration: none;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
     
 }
-a {
+
+.botiga {
+    background-color: tomato;
     color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 1000;
-    font-size: 100%;
-}   
-
-
-/* possem els menús en horitzontal, i sí, podem possar a la vegada més
-    d'una referència */
-li {
-    padding: 0, 0;
-    margin: 2px, 2px;
-    /* atenció la característica display que és molt potent */
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
     display: inline-block;
-    margin-left: 10%;
+    width: 30%;
+    height: auto;
+    opacity: 0.9;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgb(109, 58, 58);
+    text-align: center;
 }
 
+.botiga img.Camisetas {
+    width: 100%;
+    border-radius: 10px;
+    height: auto;
+    margin-bottom: 10px;
+}
 
-img.logo{
-    width: 20%;
+.botiga h1 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.botiga h4 {
+    font-size: 18px;
+    color: hsl(0, 0%, 100%);
+    margin: 5px 0;
+}
+
+.botiga h6 {
+    font-size: 16px;
+    color: #000000;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+form {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+form input[type="text"], form select, form textarea {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form input[type="checkbox"] {
+    margin: 10px;
+}
+
+.boton_enviar {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: rgb(18, 32, 229);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.boton_enviar:hover {
+    background-color: rgb(0, 15, 150);
+}
+
+footer {
+    background-color: rgb(7, 218, 218);
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+img {
+    height: auto;
 }
