@@ -208,15 +208,12 @@
     padding: 40px;
   }
   
-  .projectes img{
-    height: 100%;
-    width: 100%;
-    margin: 10px;
-    box-shadow: 0px 11px 50px rgba(43, 43, 43, 0.5);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: row;
-  }
+.projecte img {
+  height: 250px; /* o ajusta según prefieras */
+  object-fit: cover;
+  width: 100%;
+  
+}
   
   .projectes-container{
     padding-top: 60px;
