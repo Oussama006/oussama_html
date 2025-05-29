@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joc Gym</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        let video, poseNet, poses = [];
+        let objects = [];
+        let score = 0;
+        let gameRunning = false;
+        let timer = 60;
+        let circleX = 640, circleY = 50, circleRadius = 100;
+        let song;
+        let startSounded = false;
+
+        function preload() {
+            song = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3");
+        }
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            circleX = width / 2;
+            circleY = height / 2.5;
+            video = createCapture(VIDEO);
+            video.size(1280, 720);
+            video.hide();
+
+            poseNet = ml5.poseNet(video, () => console.log("PoseNet carregat!"));
+            poseNet.on("pose", results => poses = results);
+        }
+
+        function draw() {
+            image(video, 0, 0);
+            drawKeypoints();
+
+            if (!gameRunning) {
+                drawStartButton();
+                checkStartCondition();
+            } else {
+                handleGameObjects();
+                drawScore();
+                handleTimer();
+            }
+        }
+
+        function drawStartButton() {
+            fill(0, 255, 0);
+            noStroke();
+            ellipse(circleX, circleY, circleRadius * 2);
+            fill(255);
+            textAlign(CENTER, CENTER);
+            textSize(24);
+            text("Toca amb les dues mans per començar", circleX, circleY);
+        }
+
+        function checkStartCondition() {
+            if (poses.length > 0) {
+                let pose = poses[0].pose;
+                let lw = pose.keypoints.find(k => k.part === "leftWrist");
+                let rw = pose.keypoints.find(k => k.part === "rightWrist");
+
+                if (lw && rw && lw.score > 0.2 && rw.score > 0.2) {
+                    let d1 = dist(lw.position.x, lw.position.y, circleX, circleY);
+                    let d2 = dist(rw.position.x, rw.position.y, circleX, circleY);
+
+                    if (d1 < circleRadius && d2 < circleRadius) {
+                        startGame();
+                    }
+                }
+            }
+        }
+
+        function startGame() {
+            gameRunning = true;
+            timer = 60;
+            score = 0;
+            objects = [];
+            startSounded = false;
+            song.play();
+            setInterval(() => {
+                if (gameRunning) {
+                    spawnObject();
+                }
+            }, 800);
+        }
+
+        function handleTimer() {
+            fill(255, 0, 0);
+            textSize(48);
+            textAlign(CENTER, TOP);
+            text(timer, width / 2, 10);
+
+            if (frameCount % 60 === 0 && timer > 0) {
+                timer--;
+            }
+
+            if (timer === 0 && gameRunning) {
+                gameRunning = false;
+                song.pause();
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            fill(0, 200, 0);
+            rect(width / 2 - 200, height / 2 - 100, 400, 200);
+            fill(255);
+            textSize(36);
+            textAlign(CENTER, CENTER);
+            text("Puntuació final: " + score, width / 2, height / 2);
+        }
+
+        function drawScore() {
+            fill(255);
+            textSize(24);
+            textAlign(LEFT, TOP);
+            text("Punts: " + score, 20, 20);
+        }
+
+        function spawnObject() {
+            const x = random(50, width - 50);
+            const size = 40;
+            const speed = random(2, 5);
+            objects.push({ x, y: 0, size, speed });
+        }
+
+        function handleGameObjects() {
+            for (let i = objects.length - 1; i >= 0; i--) {
+                let obj = objects[i];
+                fill(0, 0, 255);
+                ellipse(obj.x, obj.y, obj.size);
+                obj.y += obj.speed;
+
+                if (checkCollision(obj)) {
+                    objects.splice(i, 1);
+                    score++;
+                } else if (obj.y > height) {
+                    objects.splice(i, 1); // desapareix si cau fora
+                }
+            }
+        }
+
+        function checkCollision(obj) {
+            if (poses.length === 0) return false;
+            let parts = ['leftWrist', 'rightWrist', 'leftAnkle', 'rightAnkle'];
+            let keypoints = poses[0].pose.keypoints.filter(k => parts.includes(k.part) && k.score > 0.2);
+
+            for (let k of keypoints) {
+                let d = dist(k.position.x, k.position.y, obj.x, obj.y);
+                if (d < obj.size / 2 + 10) return true;
+            }
+            return false;
+        }
+
+        function drawKeypoints() {
+            if (poses.length === 0) return;
+            let parts = ['leftWrist', 'rightWrist', 'leftAnkle', 'rightAnkle'];
+
+            for (let kp of poses[0].pose.keypoints) {
+                if (parts.includes(kp.part) && kp.score > 0.2) {
+                    fill(255, 0, 0);
+                    ellipse(kp.position.x, kp.position.y, 12);
+                }
+            }
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            circleX = width / 2;
+            circleY = height / 2.5;
+        }
+
+    </script>
+</body>
+
+</html>
