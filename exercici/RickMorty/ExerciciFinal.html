@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Rick i Morty</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e2f;
+      color: #ffffff;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #00ffd5;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #00ffd5;
+      color: #1e1e2f;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00bfa0;
+    }
+
+    #info {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    #imatge {
+      margin-top: 20px;
+      border-radius: 15px;
+      width: 250px;
+      height: auto;
+      box-shadow: 0 4px 15px rgba(0, 255, 213, 0.3);
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <h1>Rick i Morty</h1>
+  <p>Introdueix un nom: </p>
+  <input type="text" id="nom">
+  <button onclick="femfetch()">Buscar</button>
+
+  <p id="info"></p>
+  <img id="imatge" src="" alt="">
+
+  <script>
+    function femfetch() {
+      let buscar = document.getElementById("nom").value;
+
+      document.getElementById("info").innerHTML = "Carregant...";
+      document.getElementById("imatge").src = "";
+
+      fetch("https://rickandmortyapi.com/api/character/?name=" + buscar)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.results && data.results.length > 0) {
+            let personatge = data.results[0];
+            document.getElementById("imatge").src = personatge.image;
+            document.getElementById("info").innerHTML =
+              "Nom: " + personatge.name + "<br>" +
+              "Espècie: " + personatge.species + "<br>" +
+              "Gènere: " + personatge.gender + "<br>" +
+              "Origen: " + personatge.origin.name;
+          } else {
+            document.getElementById("info").innerHTML = "Cap personatge trobat.";
+          }
+        });
+    }
+  </script>
+</body>
+
+</html>
